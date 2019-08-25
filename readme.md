@@ -49,7 +49,7 @@ backend http_back
    cookie SRVNAME insert
    server Server1 localhost:8080 cookie S1 check
    server Server2 localhost:8081 cookie S2 check
-   server Server3 localhost:8082 cookie S3 check 
+   server Server3 localhost:8082 cookie S3 check  
 </pre> 
 En esta configuración esta activado sticky session descomentar las lineas y comentar las de abajo para desactivarlo
 
