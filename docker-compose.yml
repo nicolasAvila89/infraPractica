@@ -1,0 +1,41 @@
+version: '3'
+services:
+  server1:
+    image: springio/gs-spring-boot-docker
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - server1-variables.env
+  server2:
+    image: springio/gs-spring-boot-docker
+    build: .
+    ports:
+      - "8081:8080"
+    env_file:
+      - server2-variables.env
+  server3:
+    image: springio/gs-spring-boot-docker
+    build: .
+    ports:
+      - "8082:8080"
+    env_file:
+      - server3-variables.env
+
+
+#  server2:
+#    build: .
+#    ports:
+#      - "8081:8080"
+#    environment:
+#      -SPRING_PROFILES_ACTIVE=prod
+#      -JAVA_OPTS:-Xmx400
+#      -ENV_NAME=Server2
+#  server3:
+#    build: .
+#    ports:
+#      - "8082:8080"
+#    environment:
+#      -SPRING_PROFILES_ACTIVE=prod
+#      -JAVA_OPTS:-Xmx400
+#      -ENV_NAME=Server3

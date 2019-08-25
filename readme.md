@@ -31,21 +31,22 @@ Editar load-balancer.conf y agregar dentro de html para que quede de la siguient
 </pre>
 
 
-#Levantar los contenedores quitar el -d si se quiere sacar el modo daemon
+#Levantar los contenedores
 <pre>
-docker run -d -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server1&quot; -p 8080:8080 -t springio/gs-spring-boot-docker
-docker run -d -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server2&quot; -p 8081:8080 -t springio/gs-spring-boot-docker
-docker run -d -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server3&quot; -p 8082:8080 -t springio/gs-spring-boot-docker
+docker-compose up
 </pre>
 
 #Para matar a todos los contenedores
+<pre>
+docker-compose down
+</pre>
+Si no llega a funcionar
+<pre>
 docker stop $(docker ps -aq)
+</pre>
+
 
 #Para loguear sin tener que hacer un docker-compose
 <pre>
-for c in $(docker ps -a --format="{{.Names}}")
-do
-       docker logs -f $c > /tmp/$c.log 2> /tmp/$c.err &
-done
-tail -f /tmp/*.{log,err}
+docker-compose logs -f
 </pre>
