@@ -54,7 +54,7 @@ backend http_back
 En esta configuración esta activado sticky session descomentar las lineas y comentar las de abajo para desactivarlo
 
 #Configurar Halzecast para session replication
-https://dzone.com/articles/spring-boot-hazelcast-for-session-replication 
+https://dzone.com/articles/spring-boot-hazelcast-for-session-replication  
 
 #Levantar los contenedores
 <pre>
