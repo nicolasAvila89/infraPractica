@@ -53,6 +53,8 @@ backend http_back
 </pre> 
 En esta configuración esta activado sticky session descomentar las lineas y comentar las de abajo para desactivarlo
 
+#Configurar Halzecast para session replication
+https://dzone.com/articles/spring-boot-hazelcast-for-session-replication
 
 #Levantar los contenedores
 <pre>
@@ -67,6 +69,7 @@ Si no llega a funcionar
 <pre>
 docker stop $(docker ps -aq)
 </pre>
+
 
 
 #Para loguear sin tener que hacer un docker-compose
