@@ -55,6 +55,8 @@ En esta configuración esta activado sticky session descomentar las lineas y com
 
 #Configurar Halzecast para session replication
 https://dzone.com/articles/spring-boot-hazelcast-for-session-replication  
+Un link un poco mas practico
+https://www.baeldung.com/java-hazelcast
 
 #Levantar los contenedores
 <pre>
