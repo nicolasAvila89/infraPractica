@@ -1,6 +1,7 @@
 package hello;
 
 import java.text.NumberFormat;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UsersController {
     final NumberFormat format = NumberFormat.getInstance();
+
+    final Logger LOGGER = Logger.getLogger(UsersController.class.getName());
 
     @Autowired
     public SessionService sessionService;
@@ -28,13 +31,16 @@ public class UsersController {
                 + "Cantidad de marcadores comprados " + marcadores
                 + " <br> "
                 + getFreeMem();
-
+        LOGGER.info(String.format("%s-%s-UserID:%s,Markers:%s",System.getenv("ENV_NAME"),"SAVE",userId,marcadores));
         return htmlLike;
     }
 
+
     @RequestMapping("/users/{userId}")
     public String get(@PathVariable String userId) {
-        return "Cantidad de marcadores comprados " + sessionService.get(userId).toString();
+        Integer markers = sessionService.get(userId);
+        LOGGER.info(String.format("%s-UserID:%s,Markers:%s",System.getenv("ENV_NAME"),userId,markers.toString()));
+        return "Cantidad de marcadores comprados " + markers.toString();
     }
 
     private String getFreeMem() {
