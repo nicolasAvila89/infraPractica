@@ -31,10 +31,21 @@ Editar load-balancer.conf y agregar dentro de html para que quede de la siguient
 </pre>
 
 
-#Levantar los contenedores
+#Levantar los contenedores quitar el -d si se quiere sacar el modo daemon
 <pre>
-docker run -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server1&quot; -p 8080:8080 -t springio/gs-spring-boot-docker
-docker run -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server2&quot; -p 8081:8080 -t springio/gs-spring-boot-docker
-docker run -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server3&quot; -p 8082:8080 -t springio/gs-spring-boot-docker
+docker run -d -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server1&quot; -p 8080:8080 -t springio/gs-spring-boot-docker
+docker run -d -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server2&quot; -p 8081:8080 -t springio/gs-spring-boot-docker
+docker run -d -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -e JAVA_OPTS=&apos;-Xmx400&apos; -e ENV_NAME=&quot;Server3&quot; -p 8082:8080 -t springio/gs-spring-boot-docker
 </pre>
 
+#Para matar a todos los contenedores
+docker stop $(docker ps -aq)
+
+#Para loguear sin tener que hacer un docker-compose
+<pre>
+for c in $(docker ps -a --format="{{.Names}}")
+do
+       docker logs -f $c > /tmp/$c.log 2> /tmp/$c.err &
+done
+tail -f /tmp/*.{log,err}
+</pre>
