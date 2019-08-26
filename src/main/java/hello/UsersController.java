@@ -8,7 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.hazelcast.core.HazelcastInstance;
 
 @RestController
 public class UsersController {
@@ -20,12 +23,12 @@ public class UsersController {
     public SessionService sessionService;
 
     @RequestMapping("/users/{userId}/comprar")
-    public String save(@PathVariable String userId) {
-        Integer marcadores = sessionService.get(userId);
+    public String save(@PathVariable String userId, @RequestParam(required = false) boolean persistent) {
+        Integer marcadores = sessionService.get(userId, persistent);
 
         marcadores = marcadores != null ? marcadores + 1 : 1;
 
-        sessionService.save(userId, marcadores);
+        sessionService.save(userId, marcadores, persistent);
 
         String htmlLike = "<!DOCTYPE html>"
                 + "<html>"
@@ -39,8 +42,8 @@ public class UsersController {
 
 
     @RequestMapping("/users/{userId}")
-    public String get(@PathVariable String userId, HttpSession httpSession) {
-        Integer markers = sessionService.get(userId);
+    public String get(@PathVariable String userId, @RequestParam(required = false) boolean persistent) {
+        Integer markers = sessionService.get(userId, persistent);
         if( markers == null ){
             LOGGER.info(String.format("%s-UserID:%s-NotFound",System.getenv("ENV_NAME"),userId));
             return "El usuario " + userId +  " no existe en el sistema";

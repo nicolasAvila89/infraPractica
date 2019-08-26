@@ -11,30 +11,31 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hazelcast.core.HazelcastInstance;
+
 @SpringBootApplication
 @RestController
 public class Application {
-    public static final String USE_HAZELCAST = "true";
-
+    public static final String HITS = "hits";
     final NumberFormat format = NumberFormat.getInstance();
+    final Logger LOGGER = Logger.getLogger(Application.class.getName());
+    @Autowired
+    HazelcastInstance hazelcastInstance;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    final Logger LOGGER = Logger.getLogger(Application.class.getName());
-
     @RequestMapping("/")
     public String home(HttpSession httpSession) {
-        Integer hits = (Integer) httpSession.getAttribute("hits");
-
+        Integer hits = (Integer) httpSession.getAttribute(HITS);
         LOGGER.info("index() called, hits was " + hits + " session id " + httpSession.getId());
 
         if (hits == null) {
             hits = 0;
         }
 
-        httpSession.setAttribute("hits", ++hits);
+        httpSession.setAttribute(HITS, ++hits);
 
         Runtime runtime = Runtime.getRuntime();
 
