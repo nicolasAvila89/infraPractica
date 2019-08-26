@@ -1,12 +1,10 @@
-package session;
+package hello.filter;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.web.WebFilter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
@@ -21,9 +19,9 @@ import static java.util.Collections.singletonList;
  * instance to Tomcat for storage of HTTP sessions, instead of Tomcat's default
  * implementation.
  */
-@Configuration
-@ConditionalOnExpression("true")
-public class HazelcastConfiguration{
+//@Configuration
+//@ConditionalOnExpression("true")
+public class HazelcastConfig {
 
     /**
      * Create a Hazelcast {@code Config} object as a bean. Spring Boot will use

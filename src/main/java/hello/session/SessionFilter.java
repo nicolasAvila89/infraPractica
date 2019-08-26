@@ -10,7 +10,9 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,8 @@ public class SessionFilter implements Filter {
         if (hazelcastSessionHints == null) {
             Integer hints = (Integer) session.getAttribute(HITS);
             hazelcastInstance.getMap(SESSIONS).put(session.getId(), hints != null ? hints : 0);
+            Cookie cookie = new Cookie("sessionId", session.getId());
+            ((HttpServletResponse) response).addCookie(cookie);
         }
 
         filterchain.doFilter(request, response);

@@ -52,7 +52,6 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("com.hazelcast:hazelcast:3.12.2")
     compile("com.hazelcast:hazelcast-client:3.12.2")
     compile("com.hazelcast:hazelcast-spring:3.12.2")
     compile("com.hazelcast:hazelcast-wm:3.8.3")
