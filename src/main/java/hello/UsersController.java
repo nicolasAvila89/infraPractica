@@ -3,6 +3,8 @@ package hello;
 import java.text.NumberFormat;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +39,15 @@ public class UsersController {
 
 
     @RequestMapping("/users/{userId}")
-    public String get(@PathVariable String userId) {
+    public String get(@PathVariable String userId, HttpSession httpSession) {
         Integer markers = sessionService.get(userId);
-        LOGGER.info(String.format("%s-UserID:%s,Markers:%s",System.getenv("ENV_NAME"),userId,markers.toString()));
-        return "Cantidad de marcadores comprados " + markers.toString();
+        if( markers == null ){
+            LOGGER.info(String.format("%s-UserID:%s-NotFound",System.getenv("ENV_NAME"),userId));
+            return "El usuario " + userId +  " no existe en el sistema";
+        } else {
+            LOGGER.info(String.format("%s-UserID:%s,Markers:%s",System.getenv("ENV_NAME"),userId,markers.toString()));
+            return "Cantidad de marcadores comprados " + markers.toString();
+        }
     }
 
     private String getFreeMem() {
