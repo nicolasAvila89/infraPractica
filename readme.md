@@ -9,8 +9,8 @@ docker run -e "SPRING_PROFILES_ACTIVE=prod" -e JAVA_OPTS='-Xmx400' -p <host_port
 
 # Enpoints de la app 
 	http://localhost:8080/ (info de la memoria)
-	http://localhost:8080/users/{idUser}/comprar (suma de a 100Mb de memoria)
-	http://localhost:8080/users/{idUser} (para saber la cantidad de marcadores)
+	http://localhost:8080/markers/purchase(suma de a 100Mb de memoria)
+	http://localhost:8080/markers(para saber la cantidad de marcadores)
 
 #Configurar NGINX
 https://upcloud.com/community/tutorials/configure-load-balancing-nginx/ 
@@ -63,9 +63,13 @@ http://127.0.0.1:8070/hazelcast-mancenter/
 el monitor levanta automaticamente desde docker-compose
 en app.properties siempre modificar por la ip fisica de tu maquina y no poner nunca 127.0.0.1
 
-#Levantar los contenedores
+#Trabajar con los contenedores
+Esto me permite levantar el entorno y subir y bajar contenedores puntuales para hacer las pruebas
 <pre>
 docker-compose up
+docker-compose down
+docker-compose rm -f -s -v server1
+docker-compose up server1
 </pre>
 
 #Para matar a todos los contenedores
@@ -81,3 +85,20 @@ docker stop $(docker ps -aq)
 <pre>
 docker-compose logs -f
 </pre>
+
+
+#Guia práctica del ejercicio
+<ol>
+
+<li>Levanto un solo contenedor server1 sin sesion, muestro que no puedo storear nada. Configurar app.properties en sessionEnabled=false</li>
+<li>Habilito la sesion, muestro que ahora guarda y empiezo a comprar marcadores. El servidor se cae por el consumo de memoria.</li>
+<li>Solucion al problema 2, poner mas servidores. Como hago? load balancer. Contar un poco como levantar el load balancer</li>
+<li>Hacer un test con jmeter y mostrar los logs. Ver que esta distribuyendo la carga entre todos los servidores</li>
+<li>Mostrar ahora la que pasa con la session cuando accedo sin sticky, mostrar que pierdo los datos entre request y request hasta que caigo en el mismo server.</li>
+<li>Activar Sticky ahora, mostrar que siempre voy contra el mismo server. Todo bien no?? NO</li>
+<li>Bajar el server donde esta mi session... que paso? perdi todo. Como lo soluciono?</li>
+<li>Activar Session Replication desde HazelcastEnabled=true, contar de que se trata</li>
+<li>Bajar de nuevo el server. Mostrar que ahora soy feliz</li>
+<li>Mostrar monitor de Hazelcast como una herramienta de monitoreo </li>
+<li>Scaling, contar un poco de esto</li>
+</ol>
