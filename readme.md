@@ -93,12 +93,12 @@ docker-compose logs -f
 <li>Levanto un solo contenedor server1 sin sesion, muestro que no puedo storear nada. Configurar app.properties en sessionEnabled=false</li>
 <li>Habilito la sesion, muestro que ahora guarda y empiezo a comprar marcadores. El servidor se cae por el consumo de memoria.</li>
 <li>Solucion al problema, poner mas servidores. Como hago? load balancer. Contar un poco como levantar el load balancer</li>
-<li>Hacer un test con jmeter y mostrar los logs. Ver que esta distribuyendo la carga entre todos los servidores</li>
-<li>Mostrar ahora la que pasa con la session cuando accedo sin sticky, mostrar que pierdo los datos entre request y request hasta que caigo en el mismo server.</li>
+<li>Hacer un test con jmeter y mostrar los logs.Tirar el log con docker-compose logs -f. Ver que esta distribuyendo la carga entre todos los servidores</li>
+<li>Mostrar ahora la que pasa con la session cuando accedo sin sticky, mostrar que pierdo los datos entre request y request.</li>
 <li>Activar Sticky ahora, mostrar que siempre voy contra el mismo server. Todo bien no?? NO</li>
 <li>Bajar el server donde esta mi session... que paso? perdi todo. Como lo soluciono?</li>
 <li>Activar Session Replication desde HazelcastEnabled=true, contar de que se trata</li>
-<li>Bajar de nuevo el server. Mostrar que ahora soy feliz</li>
+<li>Bajar de nuevo el server. Mostrar que con NGINX sin sticky tambien mantiene la session pero pegandole a distintos servers.</li>
 <li>Mostrar monitor de Hazelcast como una herramienta de monitoreo </li>
 <li>Scaling, contar un poco de esto</li>
 </ol>
