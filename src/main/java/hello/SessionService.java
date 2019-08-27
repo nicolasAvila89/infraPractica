@@ -21,7 +21,18 @@ public class SessionService {
     List<byte[]> memoryFiller = new ArrayList<>();
 
     private static String MARKERS="MARKERS";
+    private static String HITS="HITS";
 
+    public Integer addHit(){
+        Integer hit= (Integer) session.getAttribute(HITS);
+        if (hit==null){
+            hit=0;
+        }else{
+            hit++;
+        }
+        session.putValue(HITS, hit);
+        return hit;
+    }
 
     public void saveMarker(Integer value) {
         memoryFill();
@@ -39,6 +50,10 @@ public class SessionService {
             byte bytes[] = new byte[1048576];
             memoryFiller.add(bytes);
         }
+    }
+
+    public HttpSession getSession(){
+        return this.session;
     }
 
 }

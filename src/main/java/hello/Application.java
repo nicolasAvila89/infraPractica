@@ -16,7 +16,10 @@ import com.hazelcast.core.HazelcastInstance;
 @SpringBootApplication
 @RestController
 public class Application {
-    public static final String HITS = "hits";
+
+    @Autowired
+    private SessionService sessionService;
+
     final NumberFormat format = NumberFormat.getInstance();
     final Logger LOGGER = Logger.getLogger(Application.class.getName());
 
@@ -26,15 +29,9 @@ public class Application {
     }
 
     @RequestMapping("/")
-    public String home(HttpSession httpSession) {
-        Integer hits = (Integer) httpSession.getAttribute(HITS);
-        LOGGER.info("index() called, hits was " + hits + " session id " + httpSession.getId()+" session type "+httpSession.getClass().getSimpleName());
-
-        if (hits == null) {
-            hits = 0;
-        }
-
-        httpSession.setAttribute(HITS, ++hits);
+    public String home(HttpSession session) {
+        Integer hits = sessionService.addHit();
+        LOGGER.info("index() called, hits was " + hits + " session id " + session.getId()+" session type "+session.getClass().getSimpleName());
 
         Runtime runtime = Runtime.getRuntime();
 
@@ -54,7 +51,7 @@ public class Application {
                 + "<br>Max memory: " + format.format(maxMemory / mb) + mega
                 + "<br>Total free memory: " + format.format((freeMemory + (maxMemory - allocatedMemory)) / mb) + mega
                 + "<br>=================================================================\n"
-                + "<br> hits: \n " + hits + " httpSession Id: " + httpSession.getId() + " session_type "+httpSession.getClass().getSimpleName()
+                + "<br> hits: \n " + hits + " httpSession Id: " + session.getId() + " session_type "+session.getClass().getSimpleName()
                 + "<br>=================================================================\n"
                 + "</body>"
                 + "</html>";
