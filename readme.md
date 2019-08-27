@@ -12,7 +12,7 @@ docker run -e "SPRING_PROFILES_ACTIVE=prod" -e JAVA_OPTS='-Xmx400' -p <host_port
 	http://localhost:8080/markers/purchase(suma de a 100Mb de memoria)
 	http://localhost:8080/markers(para saber la cantidad de marcadores)
 
-#Configurar NGINX
+# Configurar NGINX
 https://upcloud.com/community/tutorials/configure-load-balancing-nginx/ 
 Editar load-balancer.conf y agregar dentro de html para que quede de la siguiente forma
 <pre>
@@ -30,7 +30,7 @@ Editar load-balancer.conf y agregar dentro de html para que quede de la siguient
       }
 </pre>
 
-#Configurar HAProxy
+# Configurar HAProxy
 NGINX soporta sticky session solo para su version plus y es paga, como alternativa podemos instalar HAProxy
 https://upcloud.com/community/tutorials/haproxy-load-balancer-ubuntu/
 https://thisinterestsme.com/haproxy-sticky-sessions/
@@ -53,7 +53,7 @@ backend http_back
 </pre> 
 En esta configuración esta activado sticky session descomentar las lineas y comentar las de abajo para desactivarlo
 
-#Configurar Halzecast para session replication
+# Configurar Halzecast para session replication
 https://dzone.com/articles/spring-boot-hazelcast-for-session-replication  
 Un link un poco mas practico
 https://www.baeldung.com/java-hazelcast
@@ -63,7 +63,7 @@ http://127.0.0.1:8070/hazelcast-mancenter/
 el monitor levanta automaticamente desde docker-compose
 en app.properties siempre modificar por la ip fisica de tu maquina y no poner nunca 127.0.0.1
 
-#Trabajar con los contenedores
+# Trabajar con los contenedores
 Esto me permite levantar el entorno y subir y bajar contenedores puntuales para hacer las pruebas
 <pre>
 docker-compose up
@@ -72,7 +72,7 @@ docker-compose rm -f -s -v server1
 docker-compose up server1
 </pre>
 
-#Para matar a todos los contenedores
+# Para matar a todos los contenedores
 <pre>
 docker-compose down
 </pre>
@@ -81,13 +81,13 @@ Si no llega a funcionar
 docker stop $(docker ps -aq)
 </pre>
 
-#Para loguear sin tener que hacer un docker-compose
+# Para loguear sin tener que hacer un docker-compose
 <pre>
 docker-compose logs -f
 </pre>
 
 
-#Guia práctica del ejercicio
+# Guia práctica del ejercicio
 <ol>
 
 <li>Levanto un solo contenedor server1 sin sesion, muestro que no puedo storear nada. Configurar app.properties en sessionEnabled=false</li>
