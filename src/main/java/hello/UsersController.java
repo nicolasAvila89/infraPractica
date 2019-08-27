@@ -22,35 +22,30 @@ public class UsersController {
     @Autowired
     public SessionService sessionService;
 
-    @RequestMapping("/users/{userId}/comprar")
-    public String save(@PathVariable String userId, @RequestParam(required = false) boolean persistent) {
-        Integer marcadores = sessionService.get(userId, persistent);
+    @RequestMapping("/markers/purchase")
+    public String save() {
+        Integer markers = sessionService.getMarkers();
 
-        marcadores = marcadores != null ? marcadores + 1 : 1;
+        markers = markers != null ? markers + 1 : 1;
 
-        sessionService.save(userId, marcadores, persistent);
+        sessionService.saveMarker(markers);
 
         String htmlLike = "<!DOCTYPE html>"
                 + "<html>"
                 + "<body>"
-                + "Cantidad de marcadores comprados " + marcadores
+                + "Cantidad de marcadores comprados " + markers
                 + " <br> "
                 + getFreeMem();
-        LOGGER.info(String.format("%s-%s-UserID:%s,Markers:%s",System.getenv("ENV_NAME"),"SAVE",userId,marcadores));
+        LOGGER.info(String.format("%s-%s,Markers:%s", System.getenv("ENV_NAME"), "SAVE", markers));
         return htmlLike;
     }
 
 
-    @RequestMapping("/users/{userId}")
-    public String get(@PathVariable String userId, @RequestParam(required = false) boolean persistent) {
-        Integer markers = sessionService.get(userId, persistent);
-        if( markers == null ){
-            LOGGER.info(String.format("%s-UserID:%s-NotFound",System.getenv("ENV_NAME"),userId));
-            return "El usuario " + userId +  " no existe en el sistema";
-        } else {
-            LOGGER.info(String.format("%s-UserID:%s,Markers:%s",System.getenv("ENV_NAME"),userId,markers.toString()));
-            return "Cantidad de marcadores comprados " + markers.toString();
-        }
+    @RequestMapping("/markers")
+    public String get() {
+        Integer markers = sessionService.getMarkers();
+        LOGGER.info(String.format("%s,Markers:%s", System.getenv("ENV_NAME"), markers.toString()));
+        return "Cantidad de marcadores comprados " + markers.toString();
     }
 
     private String getFreeMem() {

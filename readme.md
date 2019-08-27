@@ -57,6 +57,11 @@ En esta configuración esta activado sticky session descomentar las lineas y com
 https://dzone.com/articles/spring-boot-hazelcast-for-session-replication  
 Un link un poco mas practico
 https://www.baeldung.com/java-hazelcast
+Importante: al setear la configuración poner multicast para que se descubran automaticamente los nodos
+Para monitorear la replicacion se puede acceder a monitor de Hazelcast desde
+http://127.0.0.1:8070/hazelcast-mancenter/
+el monitor levanta automaticamente desde docker-compose
+en app.properties siempre modificar por la ip fisica de tu maquina y no poner nunca 127.0.0.1
 
 #Levantar los contenedores
 <pre>
@@ -70,10 +75,7 @@ docker-compose down
 Si no llega a funcionar
 <pre>
 docker stop $(docker ps -aq)
-docker rm $(docker ps -a -q)
 </pre>
-
-
 
 #Para loguear sin tener que hacer un docker-compose
 <pre>

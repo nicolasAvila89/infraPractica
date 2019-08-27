@@ -19,8 +19,7 @@ public class Application {
     public static final String HITS = "hits";
     final NumberFormat format = NumberFormat.getInstance();
     final Logger LOGGER = Logger.getLogger(Application.class.getName());
-    @Autowired
-    HazelcastInstance hazelcastInstance;
+
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -29,7 +28,7 @@ public class Application {
     @RequestMapping("/")
     public String home(HttpSession httpSession) {
         Integer hits = (Integer) httpSession.getAttribute(HITS);
-        LOGGER.info("index() called, hits was " + hits + " session id " + httpSession.getId());
+        LOGGER.info("index() called, hits was " + hits + " session id " + httpSession.getId()+" session type "+httpSession.getClass().getSimpleName());
 
         if (hits == null) {
             hits = 0;
@@ -55,7 +54,7 @@ public class Application {
                 + "<br>Max memory: " + format.format(maxMemory / mb) + mega
                 + "<br>Total free memory: " + format.format((freeMemory + (maxMemory - allocatedMemory)) / mb) + mega
                 + "<br>=================================================================\n"
-                + "<br> hits: \n " + hits + " httpSession Id: " + httpSession.getId()
+                + "<br> hits: \n " + hits + " httpSession Id: " + httpSession.getId() + " session_type "+httpSession.getClass().getSimpleName()
                 + "<br>=================================================================\n"
                 + "</body>"
                 + "</html>";

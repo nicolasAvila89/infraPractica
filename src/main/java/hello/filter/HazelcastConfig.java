@@ -2,9 +2,14 @@ package hello.filter;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
+import com.hazelcast.config.ManagementCenterConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.web.WebFilter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.Properties;
 
@@ -19,10 +24,13 @@ import static java.util.Collections.singletonList;
  * instance to Tomcat for storage of HTTP sessions, instead of Tomcat's default
  * implementation.
  */
-//@Configuration
-//@ConditionalOnExpression("true")
+@Configuration
+@PropertySource("classpath:app.properties")
+@ConditionalOnExpression("${hazelcastEnabled:true}")
 public class HazelcastConfig {
 
+    @Value( "${hazelcastMonitorURL}" )
+    private String monitorURL;
     /**
      * Create a Hazelcast {@code Config} object as a bean. Spring Boot will use
      * the presence of this to determine that a {@code HazelcastInstance} should
@@ -37,8 +45,11 @@ public class HazelcastConfig {
     public Config config() {
         Config config = new Config();
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
-        joinConfig.getMulticastConfig().setEnabled(false);
-        joinConfig.getTcpIpConfig().setEnabled(true).setMembers(singletonList("127.0.0.1"));
+        joinConfig.getMulticastConfig().setEnabled(true);
+//        joinConfig.getTcpIpConfig().setEnabled(true).setMembers(singletonList("192.168.0.7"));
+        ManagementCenterConfig manCenterCfg = new ManagementCenterConfig();
+        manCenterCfg.setEnabled(true).setUrl(monitorURL);
+        config.setManagementCenterConfig(manCenterCfg);
         return config;
     }
 

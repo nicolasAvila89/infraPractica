@@ -1,7 +1,5 @@
 package hello;
 
-import static hello.session.HazelcastConfiguration.MARKERS;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,30 +10,28 @@ import org.springframework.stereotype.Service;
 
 import com.hazelcast.core.HazelcastInstance;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class SessionService {
 
     @Autowired
-    HazelcastInstance hazelcastInstance;
+    HttpSession session;
 
     List<byte[]> memoryFiller = new ArrayList<>();
-    Map<String, Integer> sessionContainer = new HashMap<>();
 
-    public void save(String user, Integer value, boolean persistent) {
+    private static String MARKERS="MARKERS";
+
+
+    public void saveMarker(Integer value) {
         memoryFill();
-        if (persistent) {
-            hazelcastInstance.getMap(MARKERS).put(user, value);
-        }
-
-        sessionContainer.put(user, value);
+        session.putValue(MARKERS, value);
     }
 
-    public Integer get(String user, boolean persistent) {
-        if (persistent) {
-            return (Integer) hazelcastInstance.getMap(MARKERS).get(user);
-        }
-
-        return sessionContainer.get(user);
+    public Integer getMarkers() {
+        Integer result = (Integer) session.getAttribute(MARKERS);
+        if (result==null) return 0;
+        return result;
     }
 
     private void memoryFill() {
