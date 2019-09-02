@@ -137,4 +137,8 @@ Cambiar los resources para que apunten a los minificados y mostrarlos en el brow
 Sobre imagenes: https://developers.google.com/speed/webp/ hablar de compatibilidad y thumbs
 Imagenes y responsive https://internetingishard.com/html-and-css/responsive-images/
 
+Sobre forms:
+https://spring.io/guides/gs/handling-form-submission/
+https://www.baeldung.com/spring-mvc-form-tutorial
+
 
