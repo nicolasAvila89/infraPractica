@@ -102,3 +102,39 @@ docker-compose logs -f
 <li>Mostrar monitor de Hazelcast como una herramienta de monitoreo </li>
 <li>Scaling, contar un poco de esto</li>
 </ol>
+
+#Presentación/FrontEnd
+<ol>
+<li>Pagina de html basica, con css basico.</li>
+<li>Agregarle algo de comportamiento con JS, hablar de los lios que había.</li>
+<li>Tirar algun ejemplo malo, Prototype.js luego Jquery mejora bastante pero es una paja. Era cross browser, solo nombrar y hablar un toque Flex, GWT y el muerto que nos compramos</li>
+<li>Desde el 2011 los smatphones empiezan a ser populares.Css y media queries al poder!. Empieza a aparecer el diseño responsive. Tirar algo con bootstrap y mostrar como se adapta. Buena alternativa cuando no se justifica hace una app nativa y queremos que sea accesible para todo el mundo. Mobile first. Problemas de responsive, hablar un poco de imagenes y tiempos de carga.</li>
+<li>Limitaciones de css, workaround Sass,Scss,Less</li>
+<li>Mostrar minifiers js/css, caches y como debe salir a prod</li>
+<li>El usuario empieza a ser más impaciente, quiere que todo luzca como una app. Comineza a hacerse popular usar JS y se le empieza a dar seriedad como se codifica. Componentizacion (como división de responsabilidades y reutilización), aparecen algunos MVC (2010). SPA</li>
+<li>React,Vue y amigos el concepto de que la aplicación reacciona a los cambios del modelo... comprar con Jquery</li>
+<li>Donde empieza a estar bueno esto... agregar alguna notificación push si se puede.</li>
+<li>UX por arriba, mostrar que facil es meter una primer version de materials cuando tenes bootstrap puesto.</li>
+<li>PWA - esto tengo que verlo un toque y como se engancha</li>
+<li>Que miro y que me gusta cuando elijo un framework de presentación</li>
+<li><a href="Micro Frontends https://martinfowler.com/articles/micro-frontends.html">Micro Frontends</a></li>
+<li> Backend for frontend - BFF</li>
+</ol>
+
+#Pasos de la práctica
+<p>vamos a usar SpringMVC para seguir la linea de SpringBoot</p>
+Como engine de templates vamos a usar thymeleaf, otros flavours de templates https://www.baeldung.com/spring-template-engines
+https://www.baeldung.com/thymeleaf-in-spring-mvc
+Como agregar contenido estatico,js y css
+https://memorynotfound.com/adding-static-resources-css-javascript-images-thymeleaf/
+Mostrar un poco que tenes un template, que se completa facilmente con contenido dinámico
+Ver que para desarrollo esto no se tiene que cachear para desarrollar mas rapido tanto templates como contenido dinamico, ver web.properties
+Deshabilitar la cache del browser para js y css
+Pero para producción hay que tratarlo como lo cacheo y como manejo las releases con las nuevas versiones
+Mostrar como funciona Sass y  como minifico el contenido. (Tirar un compile desde maven)
+Cambiar los resources para que apunten a los minificados y mostrarlos en el browser
+
+Sobre imagenes: https://developers.google.com/speed/webp/ hablar de compatibilidad y thumbs
+
+
+

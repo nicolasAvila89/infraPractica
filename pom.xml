@@ -63,6 +63,60 @@
                 </executions>
             </plugin>
             <!-- end::unpack[] -->
+
+            <plugin>
+                <groupId>nl.geodienstencentrum.maven</groupId>
+                <artifactId>sass-maven-plugin</artifactId>
+                <version>3.7.2</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>update-stylesheets</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <!-- Set source and destination dirs -->
+                            <source>
+                                <directory>${project.basedir}/src/main/resources/sass</directory>
+                            </source>
+                            <destination>${project.basedir}/src/main/resources/static/css</destination>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compress</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <nosuffix>true</nosuffix>
+                    <force>true</force>
+                    <excludes>
+                        <exclude>
+                            **/min/**
+                        </exclude>
+                        <exclude>
+                            **/img/**
+                        </exclude>
+                    </excludes>
+                    <outputDirectory>${project.basedir}/src/main/resources/min</outputDirectory>
+                    <!--<warSourceDirectory>${project.basedir}/src/main/resources/static/min</warSourceDirectory>-->
+                    <!--<webappDirectory></webappDirectory>-->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -70,6 +124,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>
@@ -94,6 +152,31 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>mdbootstrap-bootstrap-material-design</artifactId>
+            <version>4.8.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>vue</artifactId>
+            <version>2.6.10</version>
+        </dependency>
+
     </dependencies>
 
 </project>
