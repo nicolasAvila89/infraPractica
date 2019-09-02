@@ -135,6 +135,6 @@ Mostrar como funciona Sass y  como minifico el contenido. (Tirar un compile desd
 Cambiar los resources para que apunten a los minificados y mostrarlos en el browser
 
 Sobre imagenes: https://developers.google.com/speed/webp/ hablar de compatibilidad y thumbs
-
+Imagenes y responsive https://internetingishard.com/html-and-css/responsive-images/
 
 
