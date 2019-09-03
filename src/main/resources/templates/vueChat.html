@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags">
+<head>
+    <title>Vue Chat</title>
+
+    <script type="text/javascript" th:src="@{/webjars/sockjs-client/1.3.0/dist/sockjs.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/stomp-websocket/2.3.3-1/stomp.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chatConnection.js}"></script>
+</head>
+<body>
+
+<script type="text/javascript" th:src="@{/webjars/vue/2.6.10/dist/vue.js}"></script>
+
+
+<div id="app">
+    <p>
+        {{title}}
+    </p>
+    <div v-if="connection==null">
+        <input type="text" id="from" placeholder="Nickname" v-model="nickname"/>
+        <button v-on:click="connect">Conectar</button>
+    </div>
+    <div v-else>
+
+        <input type="text" id="text" placeholder="Escribir un mensaje..." v-model="message"/>-->
+        <button v-on:click="send">Enviar</button>
+        <button v-on:click="disconnect">
+            Desconectar
+        </button>
+    </div>
+    <div>
+        <ul>
+            <li v-for="msj in messages">
+                {{ msj.from}} - {{msj.time}} : {{msj.text}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/vueChat.js}"></script>
+</body>
+</html>

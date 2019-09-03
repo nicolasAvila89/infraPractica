@@ -142,7 +142,9 @@ https://spring.io/guides/gs/handling-form-submission/
 Poner materials
 Contar sobre data binding, ver que facil es que luzca bien un formulario con materials, mostrar font-awsome
 Hablar de validaciones, mostrar documentacion sobre la misma
-Arrancar con vue
+Arrancar con vue y websockets
+Para configurar websockets https://www.baeldung.com/websockets-spring
+
 
 
 

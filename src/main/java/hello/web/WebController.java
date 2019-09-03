@@ -1,6 +1,10 @@
 package hello.web;
 
+import hello.model.Message;
+import hello.model.OutputMessage;
 import hello.model.User;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,5 +43,20 @@ public class WebController {
         return "userCreated";
     }
 
+    @GetMapping("/simpleChat")
+    public String chat() {
+        return "chat";
+    }
+
+    @GetMapping("/vueChat")
+    public String vueChat() {
+        return "vueChat";
+    }
+
+    @MessageMapping("/chat")
+    @SendTo("/topic/messages")
+    public OutputMessage send(Message message) throws Exception {
+        return new OutputMessage(message.getFrom(), message.getText());
+    }
 
 }
