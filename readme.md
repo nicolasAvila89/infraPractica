@@ -103,7 +103,7 @@ docker-compose logs -f
 <li>Scaling, contar un poco de esto</li>
 </ol>
 
-#Presentación/FrontEnd
+# Presentación/FrontEnd
 <ol>
 <li>Pagina de html basica, con css basico.</li>
 <li>Agregarle algo de comportamiento con JS, hablar de los lios que había.</li>
@@ -121,7 +121,7 @@ docker-compose logs -f
 <li> Backend for frontend - BFF</li>
 </ol>
 
-#Pasos de la práctica
+# Pasos de la práctica
 <p>vamos a usar SpringMVC para seguir la linea de SpringBoot</p>
 Como engine de templates vamos a usar thymeleaf, otros flavours de templates https://www.baeldung.com/spring-template-engines
 https://www.baeldung.com/thymeleaf-in-spring-mvc
