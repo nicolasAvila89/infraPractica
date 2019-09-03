@@ -8,28 +8,25 @@
     <script type="text/javascript" th:src="@{/webjars//jquery/3.4.1/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/responsive.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.8.1/css/all.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/mdbootstrap-bootstrap-material-design/4.8.8/css/mdb.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}"/>
+
 </head>
 <body>
 <div class="container">
-    <div class="row cars">
+    <div class="row">
         <div class="col-sm-12">
-            <h1>Responsive Example</h1>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <img th:src="@{/img/car1.jpg}"/>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <img th:src="@{/img/car2.jpg}"/>
-        </div>
-        <div class="col-md-12 col-lg-4">
-            <img th:src="@{/img/car3.jpg}"/>
+            <div class="alert alert-primary" role="alert" th:text="${user.name} + ' ha sido creado con el email '+${user.email}">
+            </div>
         </div>
     </div>
 
 </div>
-
 </body>
+<script type="text/javascript" th:src="@{/webjars/mdbootstrap-bootstrap-material-design/4.8.8/js/mdb.min.js}"></script>
+
 </html>

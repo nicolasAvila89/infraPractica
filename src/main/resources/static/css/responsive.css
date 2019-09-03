@@ -1,15 +1,41 @@
+/*extra small devices*/
+h1.greenFont{
+    color: green;
+}
+.cars img{
+    width: 100%;
+    margin-top: 10px;
+}
 
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
 
+}
 
+/*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
+    .cars img{
+        margin-top: 0px;
+    }
 
+    .cars{
+        background-color: red;
+        color: blue;
+    }
 }
 
-@media (min-width: 922px) {
-
-
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .cars{
+        background-color: black;
+        color: white;
+    }
 }
 
+/*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-
+    .cars{
+        background-color: yellow;
+        color: red;
+    }
 }

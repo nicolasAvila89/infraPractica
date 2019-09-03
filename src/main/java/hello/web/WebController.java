@@ -1,8 +1,11 @@
 package hello.web;
 
+import hello.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -23,6 +26,18 @@ public class WebController {
         return "responsive";
     }
 
+    @GetMapping("/materials")
+    public String materials(Model model) {
+        model.addAttribute("user", new User());
+        return "materials";
+    }
+
+
+    @PostMapping("/addUser")
+    public String addUserSubmit(Model model,@ModelAttribute User user) {
+        model.addAttribute("user", user);
+        return "userCreated";
+    }
 
 
 }
