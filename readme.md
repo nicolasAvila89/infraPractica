@@ -139,7 +139,10 @@ Sobre imagenes: https://developers.google.com/speed/webp/ hablar de compatibilid
 Imagenes y responsive https://internetingishard.com/html-and-css/responsive-images/
 Sobre forms:
 https://spring.io/guides/gs/handling-form-submission/
-https://www.baeldung.com/spring-mvc-form-tutorial
 Poner materials
+Contar sobre data binding, ver que facil es que luzca bien un formulario con materials, mostrar font-awsome
+Hablar de validaciones, mostrar documentacion sobre la misma
+Arrancar con vue
+
 
 
