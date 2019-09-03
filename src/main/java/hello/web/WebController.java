@@ -18,5 +18,11 @@ public class WebController {
         return "hello";
     }
 
+    @GetMapping("/responsive")
+    public String responsive() {
+        return "responsive";
+    }
+
+
 
 }

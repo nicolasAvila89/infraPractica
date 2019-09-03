@@ -1,8 +1,34 @@
 body {
   padding-left: 11em;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: purple;
-  background-color: #CDF;
+  font-family: Helvetica, sans-serif, Times, serif;
+  color: #333;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.message, .success, .error, .warning {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  border-color: green;
+}
+
+.error {
+  border-color: red;
+}
+
+.warning {
+  border-color: yellow;
+}
+
+p.relWidth {
+  float: left;
+  width: 62.5%;
 }
 
 ul.navbar {

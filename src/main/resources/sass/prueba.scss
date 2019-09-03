@@ -1,11 +1,54 @@
+//@import 'sheet1' el import no me gusta mucho pero te permite tener varios archivos
+
+//ej variables
+$font-stack: Helvetica, sans-serif , Times, serif;
+$primary-color: #333;
+$radius:10px;
+
+//ej mixin
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
 
 body {
   padding-left: 11em;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: purple;
-  background-color: #CDF;
+  font-family: $font-stack;
+  color: $primary-color;
+  @include border-radius(10px);
 }
 
+//Ejemplo de extend
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.error {
+  @extend .message;
+  border-color: red;
+}
+
+.warning {
+  @extend .message;
+  border-color: yellow;
+}
+
+//Ejemplo de calculos
+p.relWidth {
+  float: left;
+  width: 600px / 960px * 100%;
+}
+
+//ej de nesting
 ul.navbar {
   list-style-type: none;
   padding: 0;

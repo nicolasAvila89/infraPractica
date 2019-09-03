@@ -1,0 +1,1 @@
+setInterval(function(){var a=document.getElementById("hello");if(a.changed==undefined){a.changed=false}else{a.changed=!a.changed}if(a.changed){a.classList.add("greenFont")}else{a.classList.remove("greenFont")}},3000);

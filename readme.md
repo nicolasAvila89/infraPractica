@@ -107,7 +107,7 @@ docker-compose logs -f
 <ol>
 <li>Pagina de html basica, con css basico.</li>
 <li>Agregarle algo de comportamiento con JS, hablar de los lios que había.</li>
-<li>Tirar algun ejemplo malo, Prototype.js luego Jquery mejora bastante pero es una paja. Era cross browser, solo nombrar y hablar un toque Flex, GWT y el muerto que nos compramos</li>
+<li>Tirar algun ejemplo malo, Prototype.js (Monkey-patch) luego Jquery mejora bastante pero es una paja. Era cross browser, solo nombrar y hablar un toque Flex, GWT y el muerto que nos compramos</li>
 <li>Desde el 2011 los smatphones empiezan a ser populares.Css y media queries al poder!. Empieza a aparecer el diseño responsive. Tirar algo con bootstrap y mostrar como se adapta. Buena alternativa cuando no se justifica hace una app nativa y queremos que sea accesible para todo el mundo. Mobile first. Problemas de responsive, hablar un poco de imagenes y tiempos de carga.</li>
 <li>Limitaciones de css, workaround Sass,Scss,Less</li>
 <li>Mostrar minifiers js/css, caches y como debe salir a prod</li>
@@ -132,6 +132,7 @@ Ver que para desarrollo esto no se tiene que cachear para desarrollar mas rapido
 Deshabilitar la cache del browser para js y css
 Pero para producción hay que tratarlo como lo cacheo y como manejo las releases con las nuevas versiones
 Mostrar como funciona Sass y  como minifico el contenido. (Tirar un compile desde maven)
+https://www.keycdn.com/blog/sass-vs-less 
 Cambiar los resources para que apunten a los minificados y mostrarlos en el browser
 
 Sobre imagenes: https://developers.google.com/speed/webp/ hablar de compatibilidad y thumbs
