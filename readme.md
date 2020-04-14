@@ -122,28 +122,64 @@ docker-compose logs -f
 </ol>
 
 # Pasos de la práctica
-<p>vamos a usar SpringMVC para seguir la linea de SpringBoot</p>
-Como engine de templates vamos a usar thymeleaf, otros flavours de templates https://www.baeldung.com/spring-template-engines
-https://www.baeldung.com/thymeleaf-in-spring-mvc
+<ol>
+<li>
+Vamos a usar SpringMVC para seguir la linea de SpringBoot.
+Como engine de templates vamos a usar thymeleaf, otros flavours de templates 
+<a href="https://www.baeldung.com/spring-template-engines">Engines</a>
+<a href="https://www.baeldung.com/thymeleaf-in-spring-mvc">Thymeleaf para spring mvc</a>
 Como agregar contenido estatico,js y css
-https://memorynotfound.com/adding-static-resources-css-javascript-images-thymeleaf/
+<a href=" https://memorynotfound.com/adding-static-resources-css-javascript-images-thymeleaf">Thymeleaf</a>
+</li>
+<li>
 Mostrar un poco que tenes un template, que se completa facilmente con contenido dinámico
 Ver que para desarrollo esto no se tiene que cachear para desarrollar mas rapido tanto templates como contenido dinamico, ver web.properties
 Deshabilitar la cache del browser para js y css
 Pero para producción hay que tratarlo como lo cacheo y como manejo las releases con las nuevas versiones
+</li>
+<li>
 Mostrar como funciona Sass y  como minifico el contenido. (Tirar un compile desde maven)
-https://www.keycdn.com/blog/sass-vs-less 
+<a href="https://www.keycdn.com/blog/sass-vs-less">Sass vs Less</a>
+</li>
+<li>
 Cambiar los resources para que apunten a los minificados y mostrarlos en el browser
+</li>
+<li>
 Poner jquery con bootstrap y mostrar que es responsive, hablar de mobile first con el ejemplo
-Sobre imagenes: https://developers.google.com/speed/webp/ hablar de compatibilidad y thumbs
-Imagenes y responsive https://internetingishard.com/html-and-css/responsive-images/
+</li>
+<li>
+Sobre imagenes: <a href="https://developers.google.com/speed/webp/"> Webp </a> hablar de compatibilidad y thumbs
+</li>
+<li>
+Imagenes y responsive <a href="https://internetingishard.com/html-and-css/responsive-images/">Link</a>
+</li>
+<li>
 Sobre forms:
-https://spring.io/guides/gs/handling-form-submission/
+<a href="https://spring.io/guides/gs/handling-form-submission/">Forms</a>
+</li>
+
+<li>
 Poner materials
+</li>
+<li>
 Contar sobre data binding, ver que facil es que luzca bien un formulario con materials, mostrar font-awsome
+</li>
+<li>
 Hablar de validaciones, mostrar documentacion sobre la misma
+</li>
+<li>
 Arrancar con vue y websockets
-Para configurar websockets https://www.baeldung.com/websockets-spring
+</li>
+<li>
+Para configurar websockets <a href="https://www.baeldung.com/websockets-spring"> DOC</a>
+</li>
+</ol>
+
+
+
+ 
+
+
 
 
 

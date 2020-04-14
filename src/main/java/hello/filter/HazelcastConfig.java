@@ -13,8 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 
 import java.util.Properties;
 
-import static java.util.Collections.singletonList;
-
 /**
  * A conditional configuration that potentially adds the bean definitions in
  * this class to the Spring application context, depending on whether the
