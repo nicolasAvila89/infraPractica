@@ -1,8 +1,11 @@
 package hello.web;
 
+import hello.Application;
+import hello.SessionService;
 import hello.model.Message;
 import hello.model.OutputMessage;
 import hello.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+import java.text.NumberFormat;
+import java.util.logging.Logger;
+
 /**
  * User: Diego Dakszewicz - diego@nubing.net
  * Date: 02/09/19 11:16
@@ -19,8 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WebController {
 
+    @Autowired
+    private SessionService sessionService;
+
+    final Logger LOGGER = Logger.getLogger(Application.class.getName());
+
+
     @GetMapping("/hello")
-    public String hello(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+    public String hello(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
@@ -38,7 +51,7 @@ public class WebController {
 
 
     @PostMapping("/addUser")
-    public String addUserSubmit(Model model,@ModelAttribute User user) {
+    public String addUserSubmit(Model model, @ModelAttribute User user) {
         model.addAttribute("user", user);
         return "userCreated";
     }
@@ -57,6 +70,40 @@ public class WebController {
     @SendTo("/topic/messages")
     public OutputMessage send(Message message) throws Exception {
         return new OutputMessage(message.getFrom(), message.getText());
+    }
+
+    @GetMapping("/")
+    public String infra(Model model) {
+        Runtime runtime = Runtime.getRuntime();
+
+        Integer hits = sessionService.addHit();
+        HttpSession session = sessionService.getSession();
+        String server = System.getenv("ENV_NAME");
+
+        LOGGER.info(server + " hits was " + hits + " session id " + session.getId() + " session type " + session.getClass().getSimpleName());
+
+        model.addAttribute("serverName", server);
+        model.addAttribute("hits", hits);
+        model.addAttribute("sessionId", session.getId());
+        model.addAttribute("sessionType", session.getClass().getSimpleName());
+        model.addAttribute("free", getMBRepresent(runtime.freeMemory()));
+        model.addAttribute("allocated", getMBRepresent(runtime.totalMemory()));
+        model.addAttribute("max", getMBRepresent(runtime.maxMemory()));
+        model.addAttribute("total", getMBRepresent(runtime.freeMemory() + (runtime.maxMemory() - runtime.totalMemory())));
+        return "infra";
+    }
+
+    @GetMapping("/leak")
+    public String leak(Model model) {
+        sessionService.memoryFill();
+        return infra(model);
+    }
+
+    private String getMBRepresent(long memory) {
+        NumberFormat format = NumberFormat.getInstance();
+        long mb = 1024 * 1024;
+        String mega = " MB";
+        return format.format(memory / mb) + mega;
     }
 
 }

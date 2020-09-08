@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags">
+<head>
+    <title>Infra Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- para que sea responsive desde el celu-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" th:src="@{/webjars//jquery/3.4.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.8.1/css/all.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/mdbootstrap-bootstrap-material-design/4.8.8/css/mdb.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong th:text="'Servidor ' + ${serverName} + '!'"/>
+            </h5>
+
+            <div class="card-body text-center border border-light">
+                <div class="col">
+                    <p th:text="'Hits:' + ${hits}"/>
+                    <p th:text="'HttpSession ID:' + ${sessionId}"/>
+                    <p th:text="'Session Type:' + ${sessionType}"/>
+                </div>
+
+                <div class="col">
+                    <hr/>
+                </div>
+
+                <div class="col">
+                    <h5>Memory Info</h5>
+                    <p th:text="'Free: ' + ${free}"/>
+                    <p th:text="'Allocated: ' + ${allocated}"/>
+                    <p th:text="'Max: ' + ${max}"/>
+                    <p th:text="'Total free: ' + ${total}"/>
+                </div>
+                <div class="col">
+                    <a href="/"
+                       class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">
+                        Hit
+                    </a>
+                    <a href="/leak"
+                       class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">
+                        Leak
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/webjars/mdbootstrap-bootstrap-material-design/4.8.8/js/mdb.min.js}"></script>
+
+</html>

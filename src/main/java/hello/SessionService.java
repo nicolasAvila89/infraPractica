@@ -1,18 +1,16 @@
 package hello;
 
-import java.util.*;
-
-import org.apache.catalina.session.StandardSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.hazelcast.core.HazelcastInstance;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 @Service
 @PropertySource("classpath:app.properties")
@@ -24,6 +22,9 @@ public class SessionService {
 
     @Value("${sessionEnabled}")
     private boolean sessionEnabled;
+
+    @Value("${leakEnabled}")
+    private boolean leakEnabled;
 
 
     List<byte[]> memoryFiller = new ArrayList<>();
@@ -53,8 +54,8 @@ public class SessionService {
         return result;
     }
 
-    private void memoryFill() {
-        if (sessionEnabled){
+    public void memoryFill() {
+        if (sessionEnabled && leakEnabled) {
             for (int i = 0; i < 100; i++) {
                 byte bytes[] = new byte[1048576];
                 memoryFiller.add(bytes);
@@ -63,7 +64,7 @@ public class SessionService {
     }
 
     public HttpSession getSession() {
-        if (!sessionEnabled){
+        if (!sessionEnabled) {
             this.session.invalidate();
             return new HttpSession() {
                 @Override

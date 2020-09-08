@@ -28,7 +28,9 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @RequestMapping("/")
+
+    @Deprecated
+//    @RequestMapping("/")
     public String home(HttpSession session) {
         Integer hits = sessionService.addHit();
         LOGGER.info("index() called, hits was " + hits + " session id " + session.getId()+" session type "+session.getClass().getSimpleName());
