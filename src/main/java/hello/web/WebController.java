@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
 import java.util.logging.Logger;
@@ -73,19 +74,23 @@ public class WebController {
     }
 
     @GetMapping("/")
-    public String infra(Model model) {
+    public String infra(Model model, HttpServletRequest request) {
         Runtime runtime = Runtime.getRuntime();
 
         Integer hits = sessionService.addHit();
         HttpSession session = sessionService.getSession();
         String server = System.getenv("ENV_NAME");
-
-        LOGGER.info(server + " hits was " + hits + " session id " + session.getId() + " session type " + session.getClass().getSimpleName());
+        //Si voy por la otra session obtengo un proxy
+        String sessionType=request.getSession().getClass().getSimpleName();
+    if (server==null){
+        server="Local";
+    }
+        LOGGER.info(server + " hits was " + hits + " session id " + session.getId() + " session type " + sessionType);
 
         model.addAttribute("serverName", server);
         model.addAttribute("hits", hits);
         model.addAttribute("sessionId", session.getId());
-        model.addAttribute("sessionType", session.getClass().getSimpleName());
+        model.addAttribute("sessionType", sessionType);
         model.addAttribute("free", getMBRepresent(runtime.freeMemory()));
         model.addAttribute("allocated", getMBRepresent(runtime.totalMemory()));
         model.addAttribute("max", getMBRepresent(runtime.maxMemory()));
@@ -94,9 +99,9 @@ public class WebController {
     }
 
     @GetMapping("/leak")
-    public String leak(Model model) {
+    public String leak(Model model,HttpServletRequest request) {
         sessionService.memoryFill();
-        return infra(model);
+        return infra(model,request);
     }
 
     private String getMBRepresent(long memory) {

@@ -20,6 +20,7 @@ public class SessionService {
     @Autowired
     HttpSession session;
 
+
     @Value("${sessionEnabled}")
     private boolean sessionEnabled;
 
