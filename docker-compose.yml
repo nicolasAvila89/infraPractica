@@ -4,24 +4,50 @@ services:
     image: springio/gs-spring-boot-docker
     build: .
     ports:
-      - "8080:8080"
+      - "8081:8080"
+    networks:
+      - tacs
     env_file:
       - server1-variables.env
   server2:
     image: springio/gs-spring-boot-docker
     build: .
     ports:
-      - "8081:8080"
+      - "8082:8080"
+    networks:
+    - tacs
     env_file:
       - server2-variables.env
   server3:
     image: springio/gs-spring-boot-docker
     build: .
     ports:
-      - "8082:8080"
+      - "8083:8080"
+    networks:
+      - tacs
     env_file:
       - server3-variables.env
-  hzMonitor:
-    image: hazelcast/management-center
+  nginx:
+    build: ./nginx
     ports:
-      - "8070:8080"
+      - "7080:80"
+    links:
+      - "server1:sv1"
+      - "server2:sv2"
+      - "server3:sv3"
+    networks:
+      - tacs
+  haproxy:
+    build: ./haproxy
+    ports:
+      - "7090:80"
+    networks:
+      - tacs
+#  hzMonitor:
+#    image: hazelcast/management-center
+#    ports:
+#      - "8070:8080"
+
+networks:
+  tacs:
+    driver: bridge
